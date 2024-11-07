@@ -172,7 +172,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("DeadZone"))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("Menu");
         }
     }
 
