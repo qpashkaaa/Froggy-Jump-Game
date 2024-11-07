@@ -17,6 +17,8 @@ public class DeadZoneController : MonoBehaviour
             PlatformGeneratorController.LastPlatformY += Random.Range(1f, 4.5f);
 
             collision.transform.position = new Vector3(x, PlatformGeneratorController.LastPlatformY, 0);
+
+            PlayerController.Score += 1;
         }
     }
 }

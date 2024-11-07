@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +7,16 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
+    /// <summary>
+    /// Счетчик пройденных платформ.
+    /// </summary>
+    public TextMeshProUGUI ScoreText;
+
+    /// <summary>
+    /// Числовой счетчик.
+    /// </summary>
+    public static int Score;
+
     /// <summary>
     /// Скорость движения персонажа.
     /// </summary>
@@ -72,6 +83,9 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+
+        ScoreText.text = "0";
+        Score = 0;
     }
 
     /// <summary>
@@ -83,6 +97,7 @@ public class PlayerController : MonoBehaviour
         AnimationsProcessing();
         MoveProcessing();
         FallProcessing();
+        ScoreProcessing();
     }
 
     /// <summary>
@@ -172,7 +187,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("DeadZone"))
         {
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene("EndGame");
         }
     }
 
@@ -197,5 +212,13 @@ public class PlayerController : MonoBehaviour
 
             _rigidbody.linearVelocity = Vector2.zero;
         }
+    }
+
+    /// <summary>
+    /// Метод обновления счетчика пройденных платформ.
+    /// </summary>
+    private void ScoreProcessing()
+    {
+        ScoreText.text = Score.ToString();
     }
 }
